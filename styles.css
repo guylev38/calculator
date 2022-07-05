@@ -16,7 +16,10 @@
 
 #screen{
   background-color: #A1D1BB;
-  width: 260px;
+  margin: 0; 
+  padding: 0;
+  min-width: 260px;
+  min-height: 85px;
 }
 
 /* Calculator Buttons */
