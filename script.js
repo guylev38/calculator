@@ -29,22 +29,30 @@ function drawButtons(){
   buttons.appendChild(numberButtonZero);
 
   // Draw the function buttons
-  let functions = ['+', '-', 'x', '/', '='];
+  let functions = ['+', '-', 'x', '/', 'C', '='];
   for(let i=0; i<functions.length; i++){
     var functionButton = document.createElement('button');
     functionButton.innerHTML = functions[i];
     functionButton.id = functions[i];
-    if(functions[i] != '='){
+    if(functions[i] != '=' || functions[i] != 'C'){
       functionButton.addEventListener('click', function() {
         updateScreen(functions[i]);
       });
     }
     buttons.appendChild(functionButton);
   }
+
+  var clearButton = document.getElementById('C');
+  clearButton.addEventListener('click', clearScreen);
 }
 
+// Screen Functions
 function updateScreen(text){
   calculatorScreenText.innerHTML += text;
+}
+
+function clearScreen(){
+  calculatorScreenText.innerHTML = '';
 }
 
 // Return the result of the math operation
