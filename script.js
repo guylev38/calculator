@@ -1,22 +1,46 @@
+// Basic Arithmetic Functions
 function add(a, b) { return a+b; }
 function subtract(a, b) { return a-b; }
 function multiply(a, b) { return a*b; }
 function divide(a,b) { return a/b; }
 
-function operate(a,b,operator){
-    switch(operator){
-        case '+':
-            return add(a,b);
-        case '-':
-            return subtract(a,b);
-        case '*':
-            return multiply(a,b);
-        case '/':
-            return divide(a,b);
-        default:
-            return null;
-    }
+// Draw the calculator buttons
+function drawButtons(){
+  var buttons = document.getElementById("buttons");
+  for(let i=1; i<10; i++) {
+    var numberButton = document.createElement('button');
+    numberButton.innerHTML = i;
+    buttons.appendChild(numberButton);
+  }
+
+  // Draw the 0 button last
+  var numberButtonZero = document.createElement('button');
+  numberButtonZero.innerHTML = 0;
+  buttons.appendChild(numberButtonZero);
+
+  // Draw the function buttons
+  let functions = ['+', '-', 'X', '/'];
+  for(let i=0; i<functions.length; i++){
+    var functionButton = document.createElement('button');
+    functionButton.innerHTML = functions[i];
+    buttons.appendChild(functionButton);
+  }
 }
 
+// Return the result of the math operation
+function operate(a,b,operator){
+  switch(operator){
+    case '+':
+      return add(a,b);
+    case '-':
+      return subtract(a,b);
+    case '*':
+      return multiply(a,b);
+    case '/':
+      return divide(a,b);
+    default:
+      return null;
+  }
+}
 
-console.log(operate(10, 2, '*'));
+drawButtons();
