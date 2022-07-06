@@ -9,8 +9,20 @@ function divide(a,b) { return a/b; }
 function setupButtons(){
   var buttons = document.getElementById("regular-buttons").children;
   for(let i=0; i<buttons.length; i++){
-    console.log(buttons[i]);
+    if(buttons[i].className == "function-button" && buttons[i].id != "equals") {
+      buttons[i].addEventListener('click', function () {
+        updateScreen(buttons[i].innerHTML);
+      });
+    } else if(buttons[i].className == "number-button"){
+      buttons[i].addEventListener('click' , function () {
+        updateScreen(buttons[i].id);
+      });
+    }
   }
+
+  var clearButton = document.getElementById("clear-btn");
+  clearButton.addEventListener('click', clearScreen);
+
 }
 
 // Screen Functions
