@@ -10,17 +10,40 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
 
   <title>Calculator</title>
 </head>
 <body>  
-  <h1>Calculator</h1>    
+  <h1 id="title">Calculator</h1>    
   <div id="calculator">
     <div id="screen">
       <h1 id="screen-text"></h1>
     </div>
-    <div class="buttons" id="buttons"></div>
+    <div class="buttons" id="buttons">
+      <div class="big-buttons">
+        <button class="delete-button">DEL</button>
+        <button class="erase-button">C</button>
+      </div>
+      <div class="regular-buttons" id="regular-buttons">
+        <button class="number-button" id="7">7</button>
+        <button class="number-button" id="8">8</button>
+        <button class="number-button" id="9">9</button>
+        <button class="function-button" id="divide">/</button>
+        <button class="number-button" id="4">4</button>
+        <button class="number-button" id="5">5</button>
+        <button class="number-button" id="6">6</button>
+        <button class="function-button" id="multiply">x</button>
+        <button class="number-button" id="1">1</button>
+        <button class="number-button" id="2">2</button>
+        <button class="number-button" id="3">3</button>
+        <button class="function-button" id="plus">+</button>
+        <button class="function-button" id="point">.</button>
+        <button class="number-button" id="0">0</button>
+        <button class="function-button" id="minus">=</button>
+        <button class="function-button" id="minus">-</button>
+      </div>
+    </div>
   </div>
 </body>
 </html>
