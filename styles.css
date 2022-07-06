@@ -1,65 +1,105 @@
 *{
-  font-family: 'Roboto', monospace;
+  font-family: 'Inconsolata', monospace;
 }
 
+/* Variables */
+
+:root{
+  --blue-background: #1363DF;
+  --screen-color: #DFF6FF;
+  --dark-blue: #06283D;
+}
+
+
 body{
-  background-color: #1A374D;
-  color: white;
+  background-color: var(--blue-background);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#calculator{
-  display: flex;
-  flex-flow: column;
-  border: 5px solid black;
-  width: fit-content;
-  height: fit-content;
+#title{
+  color: white;
 }
 
+#calculator{
+  border: 25px solid var(--dark-blue);
+  display: flex;
+  flex-flow: column;
+  width: fit-content;
+  height: fit-content;
+  gap: 10px;
+  border-radius: 20px;
+  background-color: var(--dark-blue);
+}
 
 /* Calculator Screen */
 
 #screen{
-  background-color: #B1D0E0;
+  background-color: var(--screen-color);
   margin: 0; 
   padding: 0;
-  min-width: 260px;
-  min-height: 85px;
-  max-width: 260px;
+  min-width: 290px;
+  min-height: 100px;
+  max-width: 290px;
   overflow: hidden;
+  border-radius: 24px;
 }
 
 /* Calculator Buttons */
 
 .buttons{
-  background-color: #406882;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.big-buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.regular-buttons{
+  background-color: var(--dark-blue);
   display: flex;
   /* grid-template-columns: repeat(3, 1fr); */
   flex-wrap: wrap;
-  gap: 5px;
-  width: 260px;
-  height: 300px;
+  width: 290px;
+  height: 350px;
+  row-gap: 15px;
+  column-gap: 20px;
   /* border: 5px solid red; */
+  overflow: hidden;
+  justify-content: center;
 }
 
-.buttons > button{
-  background-color: #E5E7E6;
+.function-button, .number-button{
+  background-color: #47B5FF;
   border: none;
-  border-radius: 50px;
-  font-size: 30px;
-  box-shadow: 3px 5px black;
-  width: 60px;
-  height: 60px;
+  border-radius: 36px;
+  /* border: 6px solid var(--blue-background); */
+  font-size: 20px;
+  /* box-shadow: 3px 5px black; */
+  width: 55px;
+  height: 55px;
 }
 
 
-button:hover{
-  background-color: #E5E7E6;
-  width: 58px;
-  height: 58px;
-  box-shadow: 2px 4px black;
+.function-button:hover, .number-button:hover{
+  /* background-color: #e5e7e6; */
+  filter: brightness(0.85);
+  /* box-shadow: 2px 4px black; */
 }
+
+.erase-button, .delete-button {
+  height: 50px;
+  width: 100px;
+  border-radius: 36px;
+  font-size: 20px;
+  border: none;
+  background-color: lightgreen;
+}
+
+
 
 
