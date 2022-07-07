@@ -4,6 +4,12 @@ var secondNumber = 0;
 var operator = '';
 
 var equalButton = document.getElementById("equals");
+var clearButton = document.getElementById("clear-btn");
+var deleteButton = document.getElementById("delete-btn");
+
+// Setup the clear, delete and equals buttons
+clearButton.addEventListener('click', clearScreen);
+deleteButton.addEventListener('click', deleteChar);
 equalButton.onclick = function () {
   secondNumber = calculatorScreenText.innerHTML;
   clearScreen();
@@ -11,11 +17,6 @@ equalButton.onclick = function () {
   resetNumbers();
 }
 
-function resetNumbers() {
-  firstNumber = 0;
-  secondNumber = 0;
-  operator = '';
-}
 
 // Basic Arithmetic Functions
 function add(a, b) { return parseFloat(a) + parseFloat(b); }
@@ -23,17 +24,28 @@ function subtract(a, b) { return parseFloat(a) - parseFloat(b); }
 function multiply(a, b) { return parseFloat(a) * parseFloat(b); }
 function divide(a, b) { return parseFloat(a) / parseFloat(b); }
 
+// Reset the global numbers
+function resetNumbers() {
+  firstNumber = 0;
+  secondNumber = 0;
+  operator = '';
+}
 
 // Return the result of the math operation
 function operate(a,b,operator){ 
   if(operator == "plus") calculatorScreenText.innerHTML = add(a,b);
   else if(operator == "minus") calculatorScreenText.innerHTML = subtract(a,b);
   else if(operator == "multiply") calculatorScreenText.innerHTML = multiply(a,b);
-  else if(operator == "divide") calculatorScreenText.innerHTML = divide(a,b);
-  else calculatorScreenText.innerHTML = "error";
+  else if(operator == "divide" && b != '0') calculatorScreenText.innerHTML = divide(a,b);
+  else {
+    alert("Error");
+    clearScreen();
+  }
 }
 
+// Setup the buttons with the event listeners
 function setupButtons(){
+  // Setup the number buttons
   var buttons = document.getElementById("regular-buttons").children;
   for(let i=0; i<buttons.length; i++){
     if(buttons[i].className == "number-button"){
@@ -42,6 +54,7 @@ function setupButtons(){
       });
     }
 
+    // Setup the function buttons
     else if(buttons[i].className == "function-button" && buttons[i].id != "equals"){
       buttons[i].addEventListener('click', function () {
         firstNumber = calculatorScreenText.innerHTML;
@@ -51,14 +64,9 @@ function setupButtons(){
     }
   }
 
-  var clearButton = document.getElementById("clear-btn");
-  clearButton.addEventListener('click', clearScreen);
-
-  var deleteButton = document.getElementById("delete-btn");
-  deleteButton.addEventListener('click', deleteChar);
 }
 
-// Screen Functions
+// Screen Functions 
 function updateScreen(text){
   calculatorScreenText.innerHTML += text;
 }
