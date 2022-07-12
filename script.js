@@ -14,6 +14,9 @@ solveButton.addEventListener('click', () => {
 var clearButton = document.getElementById('clear-btn');
 clearButton.onclick = clearCalc;
 
+var delButton = document.getElementById('delete-btn');
+delButton.onclick = delNumber;
+
 var numbers = [];
 var operator = '';
 var isSolved = false;
@@ -76,6 +79,7 @@ function clearScreen(){ calcScreen.textContent = ''; }
 function updateBackgroundScreen(text){ calcBackgroundScreen.textContent += text + ' '; }
 function setBackgroundScreenText(text) { calcBackgroundScreen.textContent = text; }
 function clearBackgroundScreen(){ calcBackgroundScreen.textContent = ''; }
+function delNumber(){ calcScreen.textContent = calcScreen.textContent.slice(0,-1); }
 
 // Math Stuff
 function add(a,b){ return parseFloat(a) + parseFloat(b); }
@@ -88,5 +92,5 @@ function solve(a, b, operator){
   else if(operator == '-') return subtract(a, b);
   else if(operator == 'x') return multiply(a, b);
   else if(operator == '/' && b != 0) return divide(a, b);
-  // else alert("Error!");
+  else alert("Error!");
 }  
