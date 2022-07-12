@@ -1,83 +1,84 @@
-var calculatorScreenText = document.getElementById("screen-text");
-var firstNumber = 0;
-var secondNumber = 0;
+var numberButtons = document.querySelectorAll('.number-button');
+var functionButtons = document.querySelectorAll('.function-button');
+var calcScreen = document.getElementById('screen-text');
+var calcBackgroundScreen = document.getElementById('background-text');
+
+var solveButton = document.getElementById('solve');
+solveButton.addEventListener('click', () => {
+
+});
+
+
+
+
+var clearButton = document.getElementById('clear-btn');
+clearButton.onclick = clearCalc;
+
+var numbers = [];
 var operator = '';
 
-var equalButton = document.getElementById("equals");
-var clearButton = document.getElementById("clear-btn");
-var deleteButton = document.getElementById("delete-btn");
+numberButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    updateScreen(button.textContent);
+  });
+});
 
-// Setup the clear, delete and equals buttons
-clearButton.addEventListener('click', clearScreen);
-deleteButton.addEventListener('click', deleteChar);
-equalButton.onclick = function () {
-  secondNumber = calculatorScreenText.innerHTML;
+functionButtons.forEach((button) => {
+  button.addEventListener('click', () => {  
+    functionButtonSetup(button);
+  });
+});
+
+
+function functionButtonSetup(button){
+  addNumber(calcScreen.textContent);
+  let prevOperator = operator;
+  operator = button.textContent;
+  if(numbers.length >= 2){
+    numbers[0] = solve(numbers[0], numbers[1], prevOperator);
+    numbers = numbers.slice(0,-1);
+    clearBackgroundScreen();
+    setBackgroundScreenText(numbers[0] + ' ');
+  } else {
+    updateBackgroundScreen(calcScreen.textContent);
+  }
+  updateBackgroundScreen(operator);
   clearScreen();
-  operate(firstNumber,secondNumber,operator);
-  resetNumbers();
 }
 
 
-// Basic Arithmetic Functions
-function add(a, b) { return parseFloat(a) + parseFloat(b); }
-function subtract(a, b) { return parseFloat(a) - parseFloat(b); }
-function multiply(a, b) { return parseFloat(a) * parseFloat(b); }
-function divide(a, b) { return parseFloat(a) / parseFloat(b); }
+// Utility Functions
+function addNumber(num){ numbers[numbers.length] = parseFloat(num); }
 
-// Reset the global numbers
-function resetNumbers() {
-  firstNumber = 0;
-  secondNumber = 0;
+function resetGlobals(){
+  numbers = [];
   operator = '';
 }
 
-// Return the result of the math operation
-function operate(a,b,operator){ 
-  if(operator == "plus") calculatorScreenText.innerHTML = add(a,b);
-  else if(operator == "minus") calculatorScreenText.innerHTML = subtract(a,b);
-  else if(operator == "multiply") calculatorScreenText.innerHTML = multiply(a,b);
-  else if(operator == "divide" && b != '0') calculatorScreenText.innerHTML = divide(a,b);
-  else {
-    alert("Error");
-    clearScreen();
-  }
+function clearCalc(){
+  clearScreen()
+  clearBackgroundScreen();
+  resetGlobals();
 }
 
-// Setup the buttons with the event listeners
-function setupButtons(){
-  // Setup the number buttons
-  var buttons = document.getElementById("regular-buttons").children;
-  for(let i=0; i<buttons.length; i++){
-    if(buttons[i].className == "number-button"){
-      buttons[i].addEventListener('click' , function () {
-        updateScreen(buttons[i].id);
-      });
-    }
+// Screen Functions
+function updateScreen(text){ calcScreen.textContent += text; }
+function setScreenText(text){ calcScreen.textContent = ''; }
+function clearScreen(){ calcScreen.textContent = ''; }
+function updateBackgroundScreen(text){ calcBackgroundScreen.textContent += text + ' '; }
+function setBackgroundScreenText(text) { calcBackgroundScreen.textContent = text; }
+function clearBackgroundScreen(){ calcBackgroundScreen.textContent = ''; }
 
-    // Setup the function buttons
-    else if(buttons[i].className == "function-button" && buttons[i].id != "equals"){
-      buttons[i].addEventListener('click', function () {
-        firstNumber = calculatorScreenText.innerHTML;
-        operator = buttons[i].id;
-        clearScreen();
-      });
-    }
-  }
+// Math Stuff
+function add(a,b){ return parseFloat(a) + parseFloat(b); }
+function subtract(a,b){ return parseFloat(a) - parseFloat(b); }
+function multiply(a,b){ return parseFloat(a) * parseFloat(b); }
+function divide(a,b){ return parseFloat(a) / parseFloat(b); }
 
-}
-
-// Screen Functions 
-function updateScreen(text){
-  calculatorScreenText.innerHTML += text;
-}
-
-function clearScreen(){
-  calculatorScreenText.innerHTML = '';
-}
-
-function deleteChar(){
-  var screenText = calculatorScreenText.innerHTML;
-  calculatorScreenText.innerHTML = screenText.slice(0, -1);
-}
-
-setupButtons();
+function solve(a, b, operator){
+  if(operator == '+') return add(a, b);
+  else if(operator == '-') return subtract(a, b);
+  else if(operator == 'x') return multiply(a, b);
+  else if(operator == '/' && b != 0) return divide(a, b);
+  // else alert("Error!");
+}  
