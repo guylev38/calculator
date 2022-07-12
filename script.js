@@ -5,21 +5,29 @@ var calcBackgroundScreen = document.getElementById('background-text');
 
 var solveButton = document.getElementById('solve');
 solveButton.addEventListener('click', () => {
-
+  addNumber(calcScreen.textContent);
+  setScreenText(solve(numbers[0], numbers[1], operator));
+  updateBackgroundScreen(numbers[1]);
+  isSolved = true;
 });
-
-
-
 
 var clearButton = document.getElementById('clear-btn');
 clearButton.onclick = clearCalc;
 
 var numbers = [];
 var operator = '';
+var isSolved = false;
 
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    if(isSolved){
+      resetGlobals();
+      clearScreen();
+      clearBackgroundScreen();
+      isSolved = false;
+    }
     updateScreen(button.textContent);
+
   });
 });
 
@@ -63,7 +71,7 @@ function clearCalc(){
 
 // Screen Functions
 function updateScreen(text){ calcScreen.textContent += text; }
-function setScreenText(text){ calcScreen.textContent = ''; }
+function setScreenText(text){ calcScreen.textContent = text; }
 function clearScreen(){ calcScreen.textContent = ''; }
 function updateBackgroundScreen(text){ calcBackgroundScreen.textContent += text + ' '; }
 function setBackgroundScreenText(text) { calcBackgroundScreen.textContent = text; }
