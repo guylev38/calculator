@@ -3,49 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
   <title>Calculator</title>
 </head>
 <body>
-  <div class="main-container">
-    <div class="calculator">
-      <div class="screen">
-        <div class="back">
-          <p></p>
-        </div>
-        <div class="front">
-          <p></p>
-        </div>
+  <div class="calculator">
+    <div class="screen">
+      <div class="back">
+        <p id="back-text"></p>
       </div>
-      <div class="buttons">
-        <div class="function-buttons">
-          <button id="delete-btn">DELETE</button>
-          <button id="clear-btn">C</button>
-        </div>
-        <div class="operators">
-          <button id="add">+</button>
-          <button id="multiply">X</button>
-          <button id="subtract">-</button>
-          <button id="divide">/</button>
-        </div>
-
-        <div class="number-buttons">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-        </div>
-
+      <div class="front">
+        <p id="front-text"></p>
       </div>
     </div>
-    <footer>
-      <p>Built by <a href="https://www.github.com/guylev38">guylev38</a> | <a href="https://www.github.com/guylev38/calculator/">Source Code</a> 
-    </footer>
+    <div class="buttons">
+      <button id="clear-btn">C</button>
+      <button id="delete-btn">D</button>
+      <button id="power-btn">^</button>
+      <button id="divide-btn">/</button>
+      <button id="one">1</button>
+      <button id="two">2</button>
+      <button id="three">3</button>
+      <button id="multiply-btn">X</button>
+      <button id="four">4</button>
+      <button id="five">5</button>
+      <button id="six">6</button>
+      <button id="subtract-btn">-</button>
+      <button id="seven">7</button>
+      <button id="eight">8</button>
+      <button id="nine">9</button>
+      <button id="float-dot">.</button>
+      <button id="zero">0</button>
+      <button id="add-btn">+</button>
+      <button id="solve-btn">=</button>
+    </div>
   </div>
+  <footer>
+    <p>© <a id="profile" href="https://www.github.com/guylev38">guylev38</a> | <a id="source-code" href="https://www.github.com/guylev38/calculator/">Source Code</a> 
+  </footer>
 </body>
 </html>
