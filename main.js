@@ -25,7 +25,6 @@ function setupButtons(){
   // Operators
   for(let i=0; i<operatorButtons.length; i++){
     operatorButtons[i].addEventListener("click", () => {
-      if(currentOperator != "") return;
       // Display on upper screen
       screenBackText.textContent += screenFrontText.textContent 
         + " " 
@@ -57,6 +56,16 @@ function setupButtons(){
             break;
         }
       }
+
+
+      if(isSolved) {
+        currentOperator = operatorButtons[i].textContent;  
+        firstNumber = Number(screenFrontText.textContent);
+        screenBackText.textContent = String(firstNumber) + " " + currentOperator;
+        isSolved = false;
+      }
+
+
       firstNumber = Number(screenFrontText.textContent);
       currentOperator = operatorButtons[i].textContent;
       screenFrontText.textContent = ""; // Clear the front text
@@ -67,7 +76,6 @@ function setupButtons(){
   document.getElementById("float-dot").addEventListener("click", () => {
     screenFrontText.textContent += ".";
   });
-
 
   // solve button
   document.getElementById("solve-btn").addEventListener("click", solve);
@@ -103,8 +111,6 @@ function solve() {
       screenFrontText.textContent = power(firstNumber, secondNumber);
       break;
   }
-
-  
 }
 
 function clear(){
