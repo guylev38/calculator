@@ -43,9 +43,38 @@ body{
 /* SCREEN */
 .screen{
   background-color: white;
-  height: 150px;
-  width: 90%;
+  height: 100px;
+  width: 80%;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+.back,
+.front{
+  width: 100%;
+  height: 100px;
+}
+
+.back{
+  padding-top: 10px;
+}
+
+.front{
+  padding-bottom: 10px
+}
+
+#back-text{
+  font-size: 24px;
+  text-align: right;
+}
+
+#front-text{
+  font-size: 32px;
+  text-align: right;
 }
 
 /* BUTTONS */
