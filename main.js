@@ -25,41 +25,51 @@ function setupButtons(){
   // Operators
   for(let i=0; i<operatorButtons.length; i++){
     operatorButtons[i].addEventListener("click", () => {
-      if(currentOperator != "") return;
       // Display on upper screen
       screenBackText.textContent += screenFrontText.textContent 
         + " " 
         + operatorButtons[i].textContent;
-
+      
       // Set current operator and firstNumber
       if(isSolved == false && typeof(firstNumber) == 'number'){
+        if(screenFrontText.textContent == "") 
+          screenFrontText.textContent = '1';
         secondNumber = Number(screenFrontText.textContent);
         switch(currentOperator){
           case '+':
             screenBackText.textContent = String(add(firstNumber, secondNumber)) + " " + currentOperator;
-            firstNumber = add(firstNumber, secondNumber);
+            screenFrontText.textContent = add(firstNumber, secondNumber);
             break;
           case '-':
             screenBackText.textContent = String(subtract(firstNumber, secondNumber)) + " " + currentOperator; 
-            firstNumber = subtract(firstNumber, secondNumber);
+            screenFrontText.textContent = subtract(firstNumber, secondNumber);
             break;
           case 'X':
-            screenBackText.textContent = String(multiply(firstNumber, secondNumber)) + " " + currentOperator;
-            firstNumber = multiply(firstNumber, secondNumber) + currentOperator;
+            screenBackText.textContent = String(multiply(firstNumber, secondNumber)) + "  " + currentOperator;
+            screenFrontText.textContent = multiply(firstNumber, secondNumber);
             break;
           case '/':
             screenBackText.textContent = String(divide(firstNumber, secondNumber)) + " " + currentOperator;
-            firstNumber = divide(firstNumber, secondNumber);
+            screenFrontText.textContent = divide(firstNumber, secondNumber);
             break;
           case '^':
             screenBackText.textContent = String(power(firstNumber, secondNumber)) + " " + currentOperator;
-            firstNumber = power(firstNumber, secondNumber);
+            screenFrontText.textContent = power(firstNumber, secondNumber);
             break;
         }
       }
+
+      if(isSolved){
+        currentOperator = operatorButtons[i].textContent;
+        firstNumber = Number(screenFrontText.textContent);
+        screenBackText.textContent = String(firstNumber) + " " + currentOperator;
+        isSolved = false;
+      }
+
       firstNumber = Number(screenFrontText.textContent);
       currentOperator = operatorButtons[i].textContent;
       screenFrontText.textContent = ""; // Clear the front text
+      screenBackText.textContent = String(firstNumber) +  " " + currentOperator;
     });
   } 
 
